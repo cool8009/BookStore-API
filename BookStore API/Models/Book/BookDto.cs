@@ -1,11 +1,8 @@
 ﻿namespace BookStore_API.Models.Book
 {
-    public class BookDto
+    public class BookDto : BaseBookDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int AuthorId { get; set; }
+        public int Id { get; set; } 
 
     }
 }
