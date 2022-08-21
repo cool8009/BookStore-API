@@ -7,6 +7,8 @@ namespace BookStore_API.Models.Book
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
+        public double Price { get; set; }
+        public int AmountInStock { get; set; }
         [Required]
         [Range(1, int.MaxValue)]
         public int AuthorId { get; set; }

@@ -2,8 +2,12 @@ using BookStore_API.Configurations;
 using BookStore_API.Contracts;
 using BookStore_API.Data;
 using BookStore_API.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +19,12 @@ builder.Services.AddDbContext<BookStoreDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddIdentityCore<ApiUser>()
+    .AddRoles<IdentityRole>()
+    .AddTokenProvider<DataProtectorTokenProvider<ApiUser>>("BookStoreAPI")
+    .AddEntityFrameworkStores<BookStoreDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddControllers();
 builder.Services.AddControllers().AddJsonOptions(x =>
@@ -41,6 +51,39 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 //we added a specific repo that can extend the basic CRUD repo above
 builder.Services.AddScoped<IAuthorsRepository, AuthorsRepository>();
 builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddScoped<IAuthManager, AuthManager>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // config password options
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 4;
+    options.Password.RequiredUniqueChars = 0;
+});
+
+builder.Services.AddAuthentication(options =>
+{   //we tell our app that we want to use authentication that specifically uses this bearer:
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{   //we're extending our configuration of the bearer and adding token validation parameters
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        //parameters that determine how our token validation works
+        ValidateIssuerSigningKey = true, //we're using a "secret" key to encode a symmetrical key.
+        //the symmetrical key is issued along with the token (which we're calling the issuer signing key) 
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"])),
+    };
+});
 
 var app = builder.Build();
 
@@ -55,6 +98,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

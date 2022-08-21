@@ -4,6 +4,7 @@ using BookStore_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore_API.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220820153311_addedIdentityTables")]
+    partial class addedIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,11 +43,17 @@ namespace BookStore_API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FirstName")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("HomeLatitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("HomeLongitude")
+                        .HasColumnType("real");
+
+                    b.Property<int>("LastName")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -146,9 +154,6 @@ namespace BookStore_API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AmountInStock")
-                        .HasColumnType("int");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
@@ -157,9 +162,6 @@ namespace BookStore_API.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -171,47 +173,37 @@ namespace BookStore_API.Migrations
                         new
                         {
                             Id = 1,
-                            AmountInStock = 10,
                             AuthorId = 1,
                             Description = "Animal Farm is a beast fable, in form of satirical allegorical novellaby George Orwell",
-                            Name = "Animal Farm",
-                            Price = 50.0
+                            Name = "Animal Farm"
                         },
                         new
                         {
                             Id = 2,
-                            AmountInStock = 10,
                             AuthorId = 1,
                             Description = "Nineteen Eighty-Four is a dystopian social science fiction novel and cautionary tale",
-                            Name = "1984",
-                            Price = 50.0
+                            Name = "1984"
                         },
                         new
                         {
                             Id = 3,
-                            AmountInStock = 10,
                             AuthorId = 2,
                             Description = "The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins",
-                            Name = "The Hunger Games",
-                            Price = 50.0
+                            Name = "The Hunger Games"
                         },
                         new
                         {
                             Id = 4,
-                            AmountInStock = 10,
                             AuthorId = 2,
                             Description = "Catching Fire is a 2009 science fiction young adult novel by the American novelist Suzanne Collins, the second book in The Hunger Games series.",
-                            Name = "Catching Fire",
-                            Price = 50.0
+                            Name = "Catching Fire"
                         },
                         new
                         {
                             Id = 6,
-                            AmountInStock = 10,
                             AuthorId = 3,
                             Description = "The Adventures of Tom Sawyer is an 1876 novel by Mark Twain about a boy growing up along the Mississippi River.",
-                            Name = "The Adventures of Tom Sawyer",
-                            Price = 50.0
+                            Name = "The Adventures of Tom Sawyer"
                         });
                 });
 
@@ -240,22 +232,6 @@ namespace BookStore_API.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "cdefd17f-0951-40b6-8d79-c2111af426c8",
-                            ConcurrencyStamp = "7a266521-6579-4a3e-8c9a-14266790a4f9",
-                            Name = "Administrator",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "8bdbcf0b-91c5-42ab-bfe2-55047851103a",
-                            ConcurrencyStamp = "64c85c76-8656-4f57-976c-b16b7b42f896",
-                            Name = "User",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

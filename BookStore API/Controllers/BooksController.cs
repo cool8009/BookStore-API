@@ -10,6 +10,7 @@ using BookStore_API.Contracts;
 using AutoMapper;
 using BookStore_API.Models.Book;
 using static System.Reflection.Metadata.BlobBuilder;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore_API.Controllers
 {
@@ -51,6 +52,7 @@ namespace BookStore_API.Controllers
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutBook(int id, BookDto bookDto)
         {
             if (id != bookDto.Id)
@@ -87,6 +89,7 @@ namespace BookStore_API.Controllers
         // POST: api/Books
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Book>> PostBook(CreateBookDto bookDto)
         {
             var book = _mapper.Map<Book>(bookDto);
@@ -96,6 +99,7 @@ namespace BookStore_API.Controllers
 
         // DELETE: api/Books/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteBook(int id)
         {
             var book = await _booksRepository.GetAsync(id);
@@ -111,6 +115,12 @@ namespace BookStore_API.Controllers
         private async Task<bool> BookExists(int id)
         {
             return await _booksRepository.Exists(id);
+        }
+        [HttpPut("purchase/{id}")]
+        [Authorize]
+        public async Task<bool> PurchaseBook(int id)
+        {
+            return await _booksRepository.PurchaseBookAsync(id);
         }
     }
 }

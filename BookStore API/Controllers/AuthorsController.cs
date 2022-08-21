@@ -9,6 +9,7 @@ using BookStore_API.Data;
 using BookStore_API.Models.Author;
 using AutoMapper;
 using BookStore_API.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore_API.Controllers
 {
@@ -55,6 +56,7 @@ namespace BookStore_API.Controllers
         // PUT: api/Authors/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutAuthor(int id, UpdateAuthorDto updateAuthorDto)
         {
             if (id != updateAuthorDto.Id)
@@ -91,6 +93,7 @@ namespace BookStore_API.Controllers
         // POST: api/Authors
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Author>> PostAuthor(CreateAuthorDto createAuthor)
         {
             //map what came in into the author object:
@@ -102,6 +105,7 @@ namespace BookStore_API.Controllers
 
         // DELETE: api/Authors/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteAuthor(int id)
         {
             var author = await _authorsRepository.GetAsync(id);

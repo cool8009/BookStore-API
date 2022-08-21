@@ -4,6 +4,7 @@ using BookStore_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore_API.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220821075602_AddPriceAmountInStock2")]
+    partial class AddPriceAmountInStock2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,11 +43,11 @@ namespace BookStore_API.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("FirstName")
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("LastName")
+                        .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -244,15 +246,15 @@ namespace BookStore_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cdefd17f-0951-40b6-8d79-c2111af426c8",
-                            ConcurrencyStamp = "7a266521-6579-4a3e-8c9a-14266790a4f9",
+                            Id = "ffdbe28d-710d-49d8-8419-15310a30d1f9",
+                            ConcurrencyStamp = "4fa82dd9-2cc3-4493-9169-573d9753dce3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "8bdbcf0b-91c5-42ab-bfe2-55047851103a",
-                            ConcurrencyStamp = "64c85c76-8656-4f57-976c-b16b7b42f896",
+                            Id = "c8ee8538-0430-4db6-980f-f413ddf51981",
+                            ConcurrencyStamp = "67f6f7ee-4ced-4b88-8eff-578598a60901",
                             Name = "User",
                             NormalizedName = "USER"
                         });
