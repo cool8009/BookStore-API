@@ -17,6 +17,7 @@ namespace BookStore_API.Data.Configurations
                     "satirical allegorical novellaby George Orwell",
                     AmountInStock = 10,
                     Price = 50,
+                    ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91LUbAcpACL.jpg",
                     AuthorId = 1
                 },
                 new Book
@@ -27,6 +28,7 @@ namespace BookStore_API.Data.Configurations
                     "novel and cautionary tale",
                     AmountInStock = 10,
                     Price = 50,
+                    ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0mfL.jpg",
                     AuthorId = 1
                 },
                 new Book
@@ -37,6 +39,7 @@ namespace BookStore_API.Data.Configurations
                     "by the American writer Suzanne Collins",
                     AmountInStock = 10,
                     Price = 50,
+                    ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/61i8nC90deL.jpg",
                     AuthorId = 2
                 },
                 new Book
@@ -48,6 +51,7 @@ namespace BookStore_API.Data.Configurations
                     "the second book in The Hunger Games series.",
                     AmountInStock = 10,
                     Price = 50,
+                    ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a2/Catching_Fire_%28Suzanne_Collins_novel_-_cover_art%29.jpg",
                     AuthorId = 2
                 },
                 new Book
@@ -58,6 +62,7 @@ namespace BookStore_API.Data.Configurations
                     "Mark Twain about a boy growing up along the Mississippi River.",
                     AmountInStock = 10,
                     Price = 50,
+                    ImageUrl = "https://mpd-biblio-covers.imgix.net/9781429959278.jpg",
                     AuthorId = 3
                 }
 

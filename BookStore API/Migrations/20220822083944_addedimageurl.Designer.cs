@@ -4,6 +4,7 @@ using BookStore_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore_API.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220822083944_addedimageurl")]
+    partial class addedimageurl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,7 +179,6 @@ namespace BookStore_API.Migrations
                             AmountInStock = 10,
                             AuthorId = 1,
                             Description = "Animal Farm is a beast fable, in form of satirical allegorical novellaby George Orwell",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/91LUbAcpACL.jpg",
                             Name = "Animal Farm",
                             Price = 50.0
                         },
@@ -187,7 +188,6 @@ namespace BookStore_API.Migrations
                             AmountInStock = 10,
                             AuthorId = 1,
                             Description = "Nineteen Eighty-Four is a dystopian social science fiction novel and cautionary tale",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/71kxa1-0mfL.jpg",
                             Name = "1984",
                             Price = 50.0
                         },
@@ -197,7 +197,6 @@ namespace BookStore_API.Migrations
                             AmountInStock = 10,
                             AuthorId = 2,
                             Description = "The Hunger Games is a 2008 dystopian novel by the American writer Suzanne Collins",
-                            ImageUrl = "https://images-na.ssl-images-amazon.com/images/I/61i8nC90deL.jpg",
                             Name = "The Hunger Games",
                             Price = 50.0
                         },
@@ -207,7 +206,6 @@ namespace BookStore_API.Migrations
                             AmountInStock = 10,
                             AuthorId = 2,
                             Description = "Catching Fire is a 2009 science fiction young adult novel by the American novelist Suzanne Collins, the second book in The Hunger Games series.",
-                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a2/Catching_Fire_%28Suzanne_Collins_novel_-_cover_art%29.jpg",
                             Name = "Catching Fire",
                             Price = 50.0
                         },
@@ -217,7 +215,6 @@ namespace BookStore_API.Migrations
                             AmountInStock = 10,
                             AuthorId = 3,
                             Description = "The Adventures of Tom Sawyer is an 1876 novel by Mark Twain about a boy growing up along the Mississippi River.",
-                            ImageUrl = "https://mpd-biblio-covers.imgix.net/9781429959278.jpg",
                             Name = "The Adventures of Tom Sawyer",
                             Price = 50.0
                         });
@@ -252,15 +249,15 @@ namespace BookStore_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "81bcd8a9-eae0-4e8c-81a4-a3073ee57d6f",
-                            ConcurrencyStamp = "45db83ce-91e5-41c2-ac13-4067ab8ce506",
+                            Id = "6830ef05-31c1-4cd1-a561-313b2a6f8a33",
+                            ConcurrencyStamp = "98524378-14b9-496c-8022-81fc399ccc3a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "5abb426b-544e-4ccc-b64e-7bd1e8925a5c",
-                            ConcurrencyStamp = "09b27ec2-f493-4b5e-8d5c-83bf36fa3523",
+                            Id = "f29f5a4d-0092-44e9-b478-95e6874420a6",
+                            ConcurrencyStamp = "31caa37f-c3a4-4b6d-83bd-392d23660081",
                             Name = "User",
                             NormalizedName = "USER"
                         });
