@@ -120,14 +120,14 @@ namespace BookStore_API.Controllers
         [Authorize]
         public async Task<IActionResult> PurchaseBook(int id)
         {
-            var isPurchaseSuccess = await _booksRepository.PurchaseBookAsync(id);
-            if (!isPurchaseSuccess)
+            var book = await _booksRepository.GetAsync(id);
+            var newBook = await _booksRepository.PurchaseBookAsync(book);
+            if (newBook == null)
             {
                 var badResult = new BadRequestObjectResult(new { message = "400 Bad Request - purchase unsucessful", currentDate = DateTime.Now });
                 return badResult;
             }
-            var result = new OkObjectResult(new { message = "200 Ok Purchase Successful", currentDate = DateTime.Now });
-            return result;
+            return Ok(newBook);
         }
     }
 }

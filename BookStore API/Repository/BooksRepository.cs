@@ -12,15 +12,14 @@ namespace BookStore_API.Repository
             _context = context;
         }
 
-        public async Task<bool> PurchaseBookAsync(int id)
-        {
-            var book = await _context.Books.FindAsync(id);
+        public async Task<Book> PurchaseBookAsync(Book book)
+        { 
             if (book == null || book.AmountInStock <= 0)
-                return false;
+                return null;
  
             book.AmountInStock -= 1;
-            await UpdateAsync(book);
-            return book != null;
+            var newBook = await UpdateAsync(book);
+            return newBook;
         }
     }
 }
