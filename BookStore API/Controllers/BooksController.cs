@@ -48,6 +48,17 @@ namespace BookStore_API.Controllers
 
             return Ok(_mapper.Map<BookDto>(book));
         }
+        [HttpGet("findauthor/{authorid}")]
+        public async Task<ActionResult<IEnumerable<BookDto>>> GetBookByAuthorId(int authorid)
+        {
+            var books = await _booksRepository.GetAllAsync();
+            if (books == null)
+            {
+                return NotFound();
+            }
+            var filteredBooks = books.FindAll(book => book.AuthorId == authorid).ToList();
+            return Ok(filteredBooks);
+        }
 
         // PUT: api/Books/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
