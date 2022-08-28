@@ -57,7 +57,8 @@ namespace BookStore_API.Controllers
                 return NotFound();
             }
             var filteredBooks = books.FindAll(book => book.AuthorId == authorid).ToList();
-            return Ok(filteredBooks);
+            return Ok(_mapper.Map<List<BookDto>>(filteredBooks));
+            //return Ok(filteredBooks);
         }
 
         // PUT: api/Books/5
