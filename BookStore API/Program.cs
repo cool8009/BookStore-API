@@ -76,7 +76,7 @@ builder.Services.AddCors(options =>
 });
 //logging setup, we're invoking a builder instance (ctx) and telling it to use the logger config (lc)
 //also read data from appsettings
-builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
+//builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

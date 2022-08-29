@@ -116,6 +116,17 @@ namespace BookStore_API.Controllers
             await _authorsRepository.DeleteAsync(author.Id);
             return NoContent();
         }
+        [HttpGet("search/{text}")]
+        public async Task<IEnumerable<GetAuthorDto>> SearchAuthor(string text)
+        {
+            var authors = await _authorsRepository.SearchAsync(text);
+            if (authors == null)
+            {
+                return null;
+            }
+            var records = _mapper.Map<List<GetAuthorDto>>(authors);
+            return records;
+        }
 
         private async Task<bool> AuthorExistsAsync(int id)
         {

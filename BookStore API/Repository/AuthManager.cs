@@ -133,5 +133,6 @@ namespace BookStore_API.Repository
                 );
             return new JwtSecurityTokenHandler().WriteToken(token); //a string that represents our token
         }
+
     }
 }

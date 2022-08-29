@@ -22,5 +22,14 @@ namespace BookStore_API.Repository
 
 
         }
+
+        public async Task<List<Author>> SearchAsync(string text)
+        {
+            var filteredAuthors = _context.Authors.Where(a => a.Name.Contains(text));
+            return await filteredAuthors.ToListAsync();
+            
+        }
+
+
     }
 }
