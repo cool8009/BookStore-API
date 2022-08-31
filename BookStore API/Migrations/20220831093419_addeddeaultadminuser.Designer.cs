@@ -4,6 +4,7 @@ using BookStore_API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore_API.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    partial class BookStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220831093419_addeddeaultadminuser")]
+    partial class addeddeaultadminuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,15 +254,15 @@ namespace BookStore_API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a2a52913-62dc-40dc-b721-e608972fdbb5",
-                            ConcurrencyStamp = "16891739-023e-4891-a92d-322e9ab37c51",
+                            Id = "9ce3ff02-3844-47f7-b1a8-50a1eab5af52",
+                            ConcurrencyStamp = "5a40844e-a4f3-419a-b267-2e291e1accfd",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "153ea258-384a-4049-8fc1-f3f970dbb2b1",
-                            ConcurrencyStamp = "74865574-44bc-4de6-89b7-b649c4ab210f",
+                            Id = "dfc198e5-b61e-43ff-abed-ba2517d5d831",
+                            ConcurrencyStamp = "b49e4e20-b496-4ce2-be04-2254cba175b2",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -289,6 +291,76 @@ namespace BookStore_API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a9ad34ea-5143-4c6a-b155-c16257120f6a",
+                            Email = "admin@sela.co.il",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@SELA.CO.IL",
+                            NormalizedUserName = "ADMIN@SELA.CO.IL",
+                            PasswordHash = "AQAAAAEAACcQAAAAEG+5sGY1OJ9NOe3tpQKw5BncZElAsSuOCY2XLqaVXY/1b0xBwsyLOFKh7CCXKlzR9w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "a391f6f7-f026-41f6-bf15-702e194cf558",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@sela.co.il"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -351,6 +423,13 @@ namespace BookStore_API.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "8e445865-a24d-4543-a6c6-9443d048cdb9",
+                            RoleId = "5da58ebf-8b39-44ca-855c-6f0df1d4ae8e"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
