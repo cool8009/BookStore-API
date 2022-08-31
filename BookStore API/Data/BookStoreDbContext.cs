@@ -36,7 +36,7 @@ namespace BookStore_API.Data
                     Email = "admin@sela.co.il",
                     NormalizedUserName = "ADMIN@SELA.CO.IL",
                     NormalizedEmail = "ADMIN@SELA.CO.IL",
-                    PasswordHash = hasher.HashPassword(null, "Pa$$w0rd")
+                    PasswordHash = hasher.HashPassword(null, "admin")
                 }
             );
 
