@@ -27,7 +27,7 @@ namespace BookStore_API.Data
             var hasher = new PasswordHasher<IdentityUser>();
 
 
-            Seeding the User to AspNetUsers table
+            //Seeding the User to AspNetUsers table
             modelBuilder.Entity<IdentityUser>().HasData(
                 new IdentityUser
                 {
