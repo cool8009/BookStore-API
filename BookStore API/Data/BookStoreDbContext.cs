@@ -10,7 +10,7 @@ namespace BookStore_API.Data
         //options object comes from options defined in program.cs
         public BookStoreDbContext(DbContextOptions options) : base(options)
         {
-            this.Database.EnsureCreatedAsync();
+            //this.Database.EnsureCreatedAsync();
         }
 
         public DbSet<Book> Books { get; set; }
