@@ -65,7 +65,7 @@ namespace BookStore_API.Repository
             if (result.Succeeded)
             {
                     if (_user.UserName == "admin@sela.co.il" || _user.Email == "admin@sela.co.il")
-                        await _userManager.AddToRoleAsync(_user, "Admin");
+                        await _userManager.AddToRoleAsync(_user, "Administrator");
 
                     //we add the incoming user to the "user" Role, RBAC
                     else
