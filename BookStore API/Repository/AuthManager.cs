@@ -64,8 +64,13 @@ namespace BookStore_API.Repository
 
             if (result.Succeeded)
             {
-                //we add the incoming user to the "user" Role, RBAC
-                await _userManager.AddToRoleAsync(_user, "User");
+                    if (_user.UserName == "admin@sela.co.il" || _user.Email == "admin@sela.co.il")
+                        await _userManager.AddToRoleAsync(_user, "Admin");
+
+                    //we add the incoming user to the "user" Role, RBAC
+                    else
+                        await _userManager.AddToRoleAsync(_user, "User");
+
             }
 
             return result.Errors; //we return errors data type
